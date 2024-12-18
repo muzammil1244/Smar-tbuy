@@ -1,15 +1,19 @@
 import { View,Text } from "react-native"
+import BottomTabs from "../Ui screen components/bottomtabs";
 
-const Searchs=()=>{
+const Searchs=({navigation})=>{
 
 
 
     return(
-    <View>
+        <>
+    <View style={{flex:1}}>
         <Text>
             hello Search
         </Text>
     </View>
+    <BottomTabs navigation={navigation}/>
+    </>
 )
 
 

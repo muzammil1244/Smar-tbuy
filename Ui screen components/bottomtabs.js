@@ -17,16 +17,7 @@ const BottomTabs = ({navigation}) => {
 
         <View >
             <LinearGradient colors={["black", "#3b3b3b"]} style={style.bottomtcontainermain}>
-                <TouchableOpacity onPress={()=>{
-                    navigation.navigate("MainHome")
-                }}>
-                    <AntDesign name={"home"} size={25} color={"white"} />
-                    <Text style={{color:'white',fontSize:10,marginBottom:10}}>
-                        home
-                    </Text>
-
-                </TouchableOpacity>
-
+               
                 <TouchableOpacity onPress={()=>{
                     navigation.navigate("Explore")
                 }}>
@@ -39,6 +30,17 @@ const BottomTabs = ({navigation}) => {
                     <Iconsfeath name={'user'} size={25} color={'white'} />
 
                 </TouchableOpacity>
+
+                <TouchableOpacity onPress={()=>{
+                    navigation.navigate("MainHome")
+                }}>
+                    <AntDesign name={"home"} size={25} color={"white"} />
+                    <Text style={{color:'white',fontSize:10,marginBottom:10}}>
+                        home
+                    </Text>
+
+                </TouchableOpacity>
+
                 <TouchableOpacity onPress={()=>{
                     navigation.navigate("Categories")
                 }}>

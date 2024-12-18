@@ -8,6 +8,9 @@ import Explore from "./components/Explore";
 import CateGories2 from "./components/Categories2";
 import User from "./components/User";
 import Searchs from "./components/Search";
+import AllDetails from "./components/AllDetails";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 
 
@@ -19,6 +22,8 @@ const App= ()=>{
   
 
   return(
+
+    <Provider store={store}>
 <NavigationContainer>
 <Stack.Navigator initialRouteName="MainHome" screenOptions={
   {
@@ -32,12 +37,14 @@ const App= ()=>{
         <Stack.Screen name= "Categories"component={CateGories2} />
         <Stack.Screen name= "User"component={User} />
         <Stack.Screen name= "Search"component={Searchs} />
+        <Stack.Screen name= "Details"component={AllDetails} />
 
 
 
 
 </Stack.Navigator>
 </NavigationContainer>
+</Provider>
   )
 }
 

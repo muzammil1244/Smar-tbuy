@@ -1,16 +1,18 @@
-import { View,Text} from "react-native"
+import React from "react";
+import { View, Text } from "react-native";
+import BottomTabs from "../Ui screen components/bottomtabs";
 
-const Explore  = ()=>{
-
-return(
-    <View>
+const Explore = ({navigation}) => {
+  return (
+    <>
+      <View style={{ flex: 1 }}>
         <Text>
-            hello Explore
+          Hello Explore
         </Text>
-    </View>
-)
-
-
-}
+      </View>
+      <BottomTabs navigation={navigation} />
+    </>
+  );
+};
 
 export default Explore;
