@@ -2,22 +2,23 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
 import Icons from "react-native-vector-icons/EvilIcons"
 
-const Headerr = ({ navigation,Modalfun }) => {
+const Headerr = ({ navigation,Modalfun,ModalSfun }) => {
     return (
         <View>
             <LinearGradient
                 colors={["black", "black", "#5f5f5f"]}
                 style={style.headercontainer}
             >
+                <TouchableOpacity onPress={()=>navigation.navigate("User")}>
                 <Icons 
                     name={"navicon"} 
-                    size={42} 
+                    size={40} 
                     color={"white"} 
                     style={{ marginBottom: 10 }} 
                 />
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => {
-                    
-                    
+ ModalSfun()                    
                 
                 }
                 
@@ -28,11 +29,10 @@ const Headerr = ({ navigation,Modalfun }) => {
                     <Text style={style.hederitem}>Search</Text>
                 </TouchableOpacity>
                 <View style={style.iconRow}>
-                    <TouchableOpacity onPress={() => navigation.navigate("Search")}>
+                    <TouchableOpacity onPress={() => ModalSfun()}>
                         <Icons name={"search"} size={42} color={"white"} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() =>  Modalfun()
-}>
+                    <TouchableOpacity onPress={() =>  Modalfun()}>
                         <Icons name={"camera"} size={42} color={"white"} />
                     </TouchableOpacity>
                 </View>

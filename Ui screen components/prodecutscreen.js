@@ -5,6 +5,7 @@ import ImageSlider from "./imageslider";
 import Headerr from "./header";
 import BottomTabs from "./bottomtabs";
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { TextInput } from "react-native-gesture-handler";
 
 
 
@@ -13,7 +14,7 @@ const Productmain = ({ navigation }) => {
     const [loading, setLoading] = useState(true);
     const [Modall,setModal] = useState(false)
     const [selectedImage, setSelectedImage] = useState(null);
-
+const [sModal,setsModal] = useState(false)
 
 
     const apifun = async () => {
@@ -83,6 +84,11 @@ const Productmain = ({ navigation }) => {
         );
     }
 
+    const ModalSfun=()=>{
+
+        setsModal(!sModal)
+    }
+
 const Modalfun = ()=>{
 
 
@@ -100,7 +106,7 @@ const imagelength = selectedImage ? 1 : 0;
         <>
         
         <View style={styles.maincontainer}>
-            <Headerr navigation={navigation} Modalfun={Modalfun}/>
+            <Headerr navigation={navigation} Modalfun={Modalfun} ModalSfun={ModalSfun}/>
 
             
            
@@ -133,7 +139,7 @@ const imagelength = selectedImage ? 1 : 0;
                 )}
                 contentContainerStyle={styles.flatListContainer}
             />
-        </View>
+       </ View>
         <Modal  
         
         transparent={true}
@@ -172,6 +178,37 @@ imagelength
         </TouchableOpacity>
         
 
+    </View>
+
+</View>
+        </Modal>
+
+        <Modal  
+        
+        transparent={true}
+        animationType="fade" // Modal ki animation
+        visible={sModal} // Modal visibility ko control karega
+        onRequestClose={ModalSfun}>
+<View style={{
+   width: "70%", 
+   height: "50%", 
+   backgroundColor: "rgba(0, 0, 0, 0.9)", 
+   borderRadius: 10,
+ 
+   alignItems: "center",
+   padding: 10,
+   alignSelf:'center',
+   marginTop:130
+
+}}>
+    <View style={{padding:10,justifyContent:'space-between',flexDirection:'column',height:"100%"}}>
+        
+<TextInput placeholder="Search" style={{padding:7,backgroundColor:'white',width:200,borderRadius:10}}/>
+<TouchableOpacity onPress={()=>{
+    ModalSfun()
+}}>
+    <Text style={{width:70,color:'white',backgroundColor:"white",paddingVertical:10,paddingHorizontal:10,color:"black",textAlign:"center",borderRadius:10,marginLeft:130}}>Cancel </Text>
+</TouchableOpacity>
     </View>
 
 </View>

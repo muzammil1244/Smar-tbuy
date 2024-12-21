@@ -13,6 +13,9 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Address from "./components/Address";
 import LikeScreen from "./components/Like";
+import Create from "./authentication/Ceate";
+import Login from "./authentication/Login";
+import ImageSlider from "./Ui screen components/imageslider";
 
 
 
@@ -27,7 +30,7 @@ const App = () => {
 
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="User" screenOptions={
+        <Stack.Navigator initialRouteName="Address" screenOptions={
           {
             headerShown: false
           }
@@ -43,6 +46,9 @@ const App = () => {
           <Stack.Screen name="Details" component={AllDetails} />
           <Stack.Screen name="Address" component={Address} />
           <Stack.Screen name="Like" component={LikeScreen} />
+          <Stack.Screen name="Create" component={Create} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Image" component={ImageSlider} />
 
 
 

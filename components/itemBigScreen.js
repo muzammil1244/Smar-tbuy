@@ -85,7 +85,7 @@ const ItemBigScreen = ({ route, navigation }) => {
                   top: 20,
                 }}
               >
-                {/* Heart Icon */}
+               
                 <TouchableOpacity onPress={toggleHeart}>
                   <FontAwesome
                     name={isHeartClicked ? "heart" : "heart-o"} // Change icon based on state
@@ -139,7 +139,7 @@ const ItemBigScreen = ({ route, navigation }) => {
                   </Text>
                 </View>
                 <TouchableOpacity
-                  onPress={() => [navigation.navigate("Details")]}
+                  onPress={() => [navigation.navigate("Details",itemdata)]}
                 >
                   <Text
                     style={{

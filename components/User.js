@@ -21,7 +21,7 @@ return(
         }} >    
                 <Text style={{backgroundColor:'white',paddingVertical:10,paddingHorizontal:65,borderRadius:10,color:'black'}}>cart</Text>
 </TouchableOpacity>
-<TouchableOpacity>
+<TouchableOpacity onPress={()=>navigation.navigate("Like")}>
     <Text style={{backgroundColor:'white',paddingVertical:10,paddingHorizontal:65,borderRadius:10,color:'black'}}>like</Text>
 </TouchableOpacity>
 

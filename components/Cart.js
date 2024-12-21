@@ -1,8 +1,10 @@
-import { View,Text, StyleSheet, Image} from "react-native"
+import { View,Text, StyleSheet, Image, ToastAndroid} from "react-native"
 import { FlatList, TouchableOpacity } from "react-native-gesture-handler"
 import { useDispatch, useSelector } from "react-redux"
 import BottomTabs from "../Ui screen components/bottomtabs"
 import { REMOVECART } from "../redux/Action"
+import { useEffect } from "react"
+import LinearGradient from "react-native-linear-gradient"
 
 
 
@@ -12,6 +14,18 @@ const Cart  = ({navigation})=>{
 
     const usereduxStore = useSelector((state)=>state.cart)
 
+    let Totale = 0
+usereduxStore.map((item)=>{
+
+    return Totale +=item.price
+
+
+})
+
+useEffect(()=>{
+    console.log("hmmmmm",Totale)
+})
+   
     const Dispatch = useDispatch()
 
     const Removefun=(id)=>{
@@ -21,7 +35,16 @@ Dispatch(REMOVECART(id))
     }
 return(
     <>
-    <View style={{flex:1}}>
+    <View style={{flex:1,backgroundColor:'white'}}>
+       
+         <LinearGradient
+                        colors={["black", "black", "#5f5f5f"]}
+                        style={{width:'100%',}}
+                    >
+            <Text style={{textAlign:'center',color:'white',padding:15}}>ToTal Price = ${Totale}</Text>
+
+
+                    </LinearGradient>
 
 <FlatList
               
