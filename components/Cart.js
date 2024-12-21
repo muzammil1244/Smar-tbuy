@@ -10,7 +10,7 @@ import { REMOVECART } from "../redux/Action"
 
 const Cart  = ({navigation})=>{
 
-    const usereduxStore = useSelector((state)=>state)
+    const usereduxStore = useSelector((state)=>state.cart)
 
     const Dispatch = useDispatch()
 

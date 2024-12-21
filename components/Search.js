@@ -1,5 +1,6 @@
 import { View,Text } from "react-native"
 import BottomTabs from "../Ui screen components/bottomtabs";
+import Entypo from "react-native-vector-icons/Entypo"
 
 const Searchs=({navigation})=>{
 

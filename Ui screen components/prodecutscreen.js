@@ -4,12 +4,17 @@ import CateGories from "./categories";
 import ImageSlider from "./imageslider";
 import Headerr from "./header";
 import BottomTabs from "./bottomtabs";
-import { BlurView } from "@react-native-community/blur";
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+
+
 
 const Productmain = ({ navigation }) => {
     const [getApi, setApi] = useState([]);
     const [loading, setLoading] = useState(true);
     const [Modall,setModal] = useState(false)
+    const [selectedImage, setSelectedImage] = useState(null);
+
+
 
     const apifun = async () => {
         try {
@@ -33,8 +38,37 @@ const Productmain = ({ navigation }) => {
         console.log(item)
     }
 
-
-
+    const openCamera = () => {
+        const options = {
+          mediaType: 'photo',
+          cameraType: 'back',
+        };
+        launchCamera(options, (response) => {
+          if (response.didCancel) {
+            console.log('User cancelled the camera picker');
+          } else if (response.errorMessage) {
+            console.log('Camera error: ', response.errorMessage);
+          } else {
+            setSelectedImage(response.assets[0].uri); // Set the image URI
+          }
+        });
+      };
+    
+      const openImageLibrary = () => {
+        const options = {
+          mediaType: 'photo',
+        };
+        launchImageLibrary(options, (response) => {
+          if (response.didCancel) {
+            console.log('User cancelled the image picker');
+          } else if (response.errorMessage) {
+            console.log('Library error: ', response.errorMessage);
+          } else {
+            setSelectedImage(response.assets[0].uri); // Set the image URI
+          }
+        });
+      };
+    
 
 
 
@@ -56,6 +90,8 @@ setModal(!Modall)
 
 
 }
+
+const imagelength = selectedImage ? 1 : 0;
 
 
 
@@ -119,11 +155,14 @@ setModal(!Modall)
     <View style={{height:"90%",flexDirection:'column',justifyContent:'space-around',width:"90%"}}>
         <Text style={{
             color:'white'
-        }}>(1)images</Text>
-        <TouchableOpacity>
+        }}>{
+imagelength
+        
+        } images</Text>
+        <TouchableOpacity onPress={()=>{openImageLibrary()}}>
             <Text style={{width:'100%',backgroundColor:'white',paddingVertical:8,borderRadius:10,textAlign:'center',color:'black'}}>Buy Gallery</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>openCamera()}>
             <Text style={{width:'100%',backgroundColor:'white',paddingVertical:8,borderRadius:10,textAlign:'center',color:'black'}}>Buy Cammera</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>{
