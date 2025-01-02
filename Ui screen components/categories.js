@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { View, Text, Image, FlatList, StyleSheet } from "react-native";
+import { View, Text, Image, FlatList, StyleSheet, TouchableOpacity } from "react-native";
 
-const CateGories = () => {
+const CateGories = ({navigation}) => {
     const [getApi, setAPi] = useState([]);
 
     const categoriesfun = async () => {
@@ -10,7 +10,7 @@ const CateGories = () => {
         try {
             let resulte = await fetch(url);
             resulte = await resulte.json();
-            setAPi(resulte.slice(0, 6)); // Sirf 8 categories lena
+            setAPi(resulte.slice(0, 6)); 
         } catch (err) {
             console.log("Error fetching categories:", err);
         }
@@ -19,6 +19,13 @@ const CateGories = () => {
     useEffect(() => {
         categoriesfun();
     }, []);
+
+
+const categoryfun =(items)=>{
+
+navigation.navigate("Categories")
+}
+
 
     return (
         <View style={styles.mainContainer}>
@@ -29,11 +36,13 @@ const CateGories = () => {
                 renderItem={({ item }) => {
                     return (
                         <View style={styles.card}>
+                            <TouchableOpacity onPress={()=>categoryfun({item})}>
                             <Image 
                                 source={{ uri: item.image }} 
                                 style={styles.image} 
                             />
                             <Text style={styles.text}>{item.name}</Text>
+                            </TouchableOpacity>
                         </View>
                     );
                 }}

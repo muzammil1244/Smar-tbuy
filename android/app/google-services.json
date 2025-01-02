@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "200344284271",
+    "project_id": "smartbuy-f0270",
+    "storage_bucket": "smartbuy-f0270.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200344284271:android:f2b3e1e5fe9409cea9719a",
+        "android_client_info": {
+          "package_name": "com.smartbuy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDH8moAtfhME7BnDlqzrkHDWmt1onwIjF8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

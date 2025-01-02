@@ -1,87 +1,146 @@
-import { View,Text, StyleSheet, Image, ToastAndroid} from "react-native"
-import { FlatList, TouchableOpacity } from "react-native-gesture-handler"
-import { useDispatch, useSelector } from "react-redux"
-import BottomTabs from "../Ui screen components/bottomtabs"
-import { REMOVECART } from "../redux/Action"
-import { useEffect } from "react"
-import LinearGradient from "react-native-linear-gradient"
+import React, { useEffect } from "react";
+import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import LinearGradient from "react-native-linear-gradient";
+import BottomTabs from "../Ui screen components/bottomtabs";
+import { REMOVECART } from "../redux/Action";
 
+const Cart = ({ navigation }) => {
+  const usereduxStore = useSelector((state) => state.cart);
 
+  const Dispatch = useDispatch();
 
+  let Total = 0;
+  usereduxStore.map((item) => {
+    return (Total += item.price);
+  });
 
+  useEffect(() => {
+    console.log("Total Price:", Total);
+  }, [Total]);
 
-const Cart  = ({navigation})=>{
+  const RemoveItem = (id) => {
+    console.log("Remove Item ID:", id);
+    Dispatch(REMOVECART(id));
+  };
 
-    const usereduxStore = useSelector((state)=>state.cart)
-
-    let Totale = 0
-usereduxStore.map((item)=>{
-
-    return Totale +=item.price
-
-
-})
-
-useEffect(()=>{
-    console.log("hmmmmm",Totale)
-})
-   
-    const Dispatch = useDispatch()
-
-    const Removefun=(id)=>{
-console.log("remove",id)
-Dispatch(REMOVECART(id))
-
-    }
-return(
+  return (
     <>
-    <View style={{flex:1,backgroundColor:'white'}}>
-       
-         <LinearGradient
-                        colors={["black", "black", "#5f5f5f"]}
-                        style={{width:'100%',}}
-                    >
-            <Text style={{textAlign:'center',color:'white',padding:15}}>ToTal Price = ${Totale}</Text>
+      <View style={styles.container}>
+        <LinearGradient colors={["black", "#333", "#5f5f5f"]} style={styles.header}>
+          <Text style={styles.totalText}>Total Price: ${Total.toFixed(2)}</Text>
+        </LinearGradient>
 
+        {usereduxStore.length === 0 ? (
+          <View style={styles.emptyCart}>
+            <Text style={styles.emptyText}>Your cart is empty!</Text>
+          </View>
+        ) : (
+          <FlatList
+            data={usereduxStore}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <View style={styles.cartItem}>
+                <Image source={{ uri: item.image }} style={styles.image} />
+                <View style={styles.itemDetails}>
+                  <Text style={styles.itemTitle}>{item.title}</Text>
+                  <Text style={styles.itemPrice}>${item.price.toFixed(2)}</Text>
+                </View>
+                <TouchableOpacity
+                  style={styles.removeButton}
+                  onPress={() => RemoveItem(item.id)}
+                >
+                  <Text style={styles.removeButtonText}>Remove</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          />
+        )}
 
-                    </LinearGradient>
-
-<FlatList
-              
-            
-                data={usereduxStore}
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => (
-                    <View  style={{margin:10,borderWidth:1,borderColor:"black",borderRadius:10,paddingVertical:10,paddingHorizontal:5}}>
-                 
-                            <View style={{flexDirection:'row',flex:1,}}>
-
-                            <Image source={{ uri: item.image }} style={{width:80,height:80,flex:1,borderRadius:7,overflow:'hidden'}} />
-                            <View style={{flex:2,}}>
-                            <Text >{item.title}</Text>
-                            <Text style={{color:'green'}} >${item.price}</Text>
-                            </View>
-                            <View style={{justifyContent:'center',alignItems:'center',}}>
-                                <TouchableOpacity onPress={()=>{
-                                    Removefun(item.id)
-                                }}>
-                                <Text style={{borderWidth:1,borderColor:'black',paddingVertical:10,paddingHorizontal:5,backgroundColor:'#aed6f1',borderRadius:5,}}>Remove</Text>
-                                </TouchableOpacity>
-                            </View>
-                            </View>
-                 
-                    </View>
-
-                )}
-            />
-        
-    </View>
-    <BottomTabs navigation={navigation} />
+        {usereduxStore.length > 0 && (
+          <TouchableOpacity style={styles.checkoutButton}>
+            <Text style={styles.checkoutText}>Proceed to Checkout</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+      <BottomTabs navigation={navigation} />
     </>
-)
+  );
+};
 
-
-}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "black",
+  },
+  header: {
+    padding: 15,
+    alignItems: "center",
+  },
+  totalText: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  emptyCart: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  emptyText: {
+    color: "white",
+    fontSize: 18,
+    fontStyle: "italic",
+  },
+  cartItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    margin: 10,
+    padding: 10,
+    backgroundColor: "#333",
+    borderRadius: 10,
+  },
+  image: {
+    width: 80,
+    height: 80,
+    borderRadius: 10,
+    marginRight: 10,
+  },
+  itemDetails: {
+    flex: 1,
+  },
+  itemTitle: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  itemPrice: {
+    color: "lightgreen",
+    fontSize: 14,
+    marginTop: 5,
+  },
+  removeButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 15,
+    backgroundColor: "#555",
+    borderRadius: 5,
+  },
+  removeButtonText: {
+    color: "white",
+    fontSize: 14,
+  },
+  checkoutButton: {
+    backgroundColor: "white",
+    padding: 15,
+    margin: 15,
+    borderRadius: 10,
+  },
+  checkoutText: {
+    color: "black",
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+});
 
 export default Cart;
-

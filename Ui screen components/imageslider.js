@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { ScrollView, StyleSheet, Image, View, Dimensions } from 'react-native';
 
-const { width } = Dimensions.get('window'); // Get device width
+const { width } = Dimensions.get('window'); 
 
 const ImageSlider = () => {
   const images = [
@@ -18,9 +18,8 @@ const ImageSlider = () => {
       setCurrentIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000); // Scroll every 3 seconds
-
-    return () => clearInterval(interval); // Cleanup interval
+    }, 3000); 
+    return () => clearInterval(interval); 
   }, []);
 
   useEffect(() => {

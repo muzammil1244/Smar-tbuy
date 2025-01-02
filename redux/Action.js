@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_TO_CART, ADD_TO_LIKE, REMOVE_TO_LIKE } from "./actionsname";
+import { ADD_TO_CART, REMOVE_TO_CART, ADD_TO_LIKE, REMOVE_TO_LIKE,SELECT_ADDS } from "./actionsname";
 
 export const ADDCART = (item) => ({
   type: ADD_TO_CART,
@@ -10,12 +10,21 @@ export const REMOVECART = (item) => ({
   data: item,
 });
 
-export const ADDLIKE = (item) => ({ // New Action for Add to Like
+export const ADDLIKE = (item) => ({ 
   type: ADD_TO_LIKE,
   data: item,
 });
 
-export const REMOVELIKE = (item) => ({ // New Action for Remove from Like
+export const REMOVELIKE = (item) => ({ 
   type: REMOVE_TO_LIKE,
   data: item,
 });
+
+export const SELECTADDS = (item)=>({
+
+  type : SELECT_ADDS,
+  data : item
+
+
+
+})

@@ -1,8 +1,10 @@
-import { ADD_TO_CART, REMOVE_TO_CART, ADD_TO_LIKE, REMOVE_TO_LIKE } from "./actionsname";
+
+import { ADD_TO_CART, REMOVE_TO_CART, ADD_TO_LIKE, REMOVE_TO_LIKE, SELECT_ADDS } from "./actionsname";
 
 const initialState = {
   cart: [],
   likes: [],
+  ADDRS:[],
 };
 
 export const Reducer = (state = initialState, action) => {
@@ -30,6 +32,15 @@ export const Reducer = (state = initialState, action) => {
         ...state,
         likes: state.likes.filter((item) => item.id !== action.data),
       };
+
+      case SELECT_ADDS:
+        return {
+          ...state,
+          ADDRS: action.data,
+      };
+      
+        
+        
 
     default:
       return state;

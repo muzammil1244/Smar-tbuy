@@ -16,7 +16,12 @@ import LikeScreen from "./components/Like";
 import Create from "./authentication/Ceate";
 import Login from "./authentication/Login";
 import ImageSlider from "./Ui screen components/imageslider";
-
+import PaymentScreen from "./components/Pament";
+import Complete from "./components/complet";
+import FirstScreen from "./Ui screen components/firstscreen";
+import OrderItem from "./components/orderitem";
+import OnlinePayment from "./components/onlinePayment";
+import OrderItems from "./components/onlinesecond";
 
 
 const Stack = createStackNavigator()
@@ -30,9 +35,9 @@ const App = () => {
 
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Address" screenOptions={
+        <Stack.Navigator initialRouteName="MainHome" screenOptions={
           {
-            headerShown: false
+            headerShown: false,
           }
         }>
 
@@ -49,8 +54,12 @@ const App = () => {
           <Stack.Screen name="Create" component={Create} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Image" component={ImageSlider} />
-
-
+          <Stack.Screen name="Payment" component={PaymentScreen} />
+          <Stack.Screen name="Complete" component={Complete} />
+          <Stack.Screen name="FirstScreen" component={FirstScreen} />
+          <Stack.Screen name="Order" component={OrderItem} />
+<Stack.Screen name="Online" component={OnlinePayment} />
+<Stack.Screen name="Onlinepayorder" component={OrderItems} />
 
 
         </Stack.Navigator>
