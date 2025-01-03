@@ -28,7 +28,10 @@ const Complete = ({ route, navigation }) => {
     };
 
     displayNotification();
-    navigation.navigate("MainHome");
+    setTimeout(() => {
+          navigation.navigate("MainHome");
+
+    }, 1.500);
   }, [itemdata, quantety]);
 
   return (

@@ -35,7 +35,7 @@ const App = () => {
 
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="MainHome" screenOptions={
+        <Stack.Navigator initialRouteName="FirstScreen" screenOptions={
           {
             headerShown: false,
           }
